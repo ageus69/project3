@@ -73,7 +73,7 @@ class ProyectoController extends Controller
      */
     public function edit(Proyecto $proyecto)
     {
-
+        
         $categorias = Categoria::all();
         $usuarios = User::all();
         return view('proyectos/agregar', compact('proyecto','categorias','usuarios'));

@@ -32,12 +32,11 @@
                             @endforeach
                         </select>
                     </div>
-                    @dd($proyecto->users());
                     <div class="form-group">
                       <label class="form-label">Usuarios</label>
                       <select name="user_id[]" class="form-control" multiple>
                           @foreach ($usuarios as $u)
-                              <option value="{{$u->id}}" {{in_array($u->id, $proyecto->users()) ? 'selected' : ''}} >{{$u->name}}</option>
+                              <option value="{{$u->id}}" {{in_array($u->id,$proyecto->users->pluck('id')->toArray()) ? 'selected' : ''}} >{{$u->name}}</option>
                           @endforeach
                       </select>
                     </div>   
