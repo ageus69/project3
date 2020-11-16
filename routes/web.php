@@ -23,6 +23,7 @@ Route::resource('categorias', CategoriaController::class);
 
 Route::resource('usuarios', UsuarioController::class);
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

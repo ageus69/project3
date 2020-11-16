@@ -18,23 +18,23 @@
     <title>Empty page - tabler.github.io - a responsive, flat and full featured admin template</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-    <script src="crud/assets/js/require.min.js"></script>
+  <script src="{{asset('crud/assets/js/require.min.js')}}"></script>
     <script>
       requirejs.config({
           baseUrl: '.'
       });
     </script>
     <!-- Dashboard Core -->
-    <link href="crud/assets/css/dashboard.css" rel="stylesheet" />
-    <script src="crud/assets/js/dashboard.js"></script>
+  <link href="{{asset('crud/assets/css/dashboard.css')}}" rel="stylesheet" />
+    <script src="{{asset('crud/assets/js/dashboard.js')}}"></script>
     <!-- c3.js Charts Plugin -->
-    <link href="crud/assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
-    <script src="crud/assets/plugins/charts-c3/plugin.js"></script>
+    <link href="{{asset('crud/assets/plugins/charts-c3/plugin.css')}}" rel="stylesheet" />
+    <script src="{{asset('crud/assets/plugins/charts-c3/plugin.js')}}"></script>
     <!-- Google Maps Plugin -->
-    <link href="crud/assets/plugins/maps-google/plugin.css" rel="stylesheet" />
-    <script src="crud/assets/plugins/maps-google/plugin.js"></script>
+    <link href="{{asset('crud/assets/plugins/maps-google/plugin.css')}}" rel="stylesheet" />
+    <script src="{{asset('crud/assets/plugins/maps-google/plugin.js')}}"></script>
     <!-- Input Mask Plugin -->
-    <script src="crud/assets/plugins/input-mask/plugin.js"></script>
+    <script src="{{asset('crud/assets/plugins/input-mask/plugin.js')}}"></script>
   </head>
   <body class="">
     <div class="page">
@@ -50,11 +50,6 @@
         </div>
         <div class="my-3 my-md-5">
             @yield('contenido')
-        </div>
-        <div class="container">
-            <div class="d-flex">
-                <button class=".btn-pill" type="submit">Crear</button>
-            </div>
         </div>
       </div>
     </div>

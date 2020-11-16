@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proyecto;
+use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProyectoController extends Controller
@@ -14,7 +16,8 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        return view('proyectos/index');
+        $proyectos = Proyecto::all();
+        return view('proyectos/index', compact('proyectos'));
     }
 
     /**
@@ -24,7 +27,9 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        $usuarios = User::all();
+        return view('proyectos/agregar', compact('categorias'), compact('usuarios'));
     }
 
     /**
@@ -35,7 +40,18 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'categoria_id' => 'required',
+            'detalles' => 'required'
+        ]);
+
+        $proyecto = Proyecto::create($request->all());
+        $proyecto->users()->attach($request->user_id);
+        
+        
+        //redireccionar
+        return redirect('proyectos');
     }
 
     /**
@@ -46,7 +62,7 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +73,10 @@ class ProyectoController extends Controller
      */
     public function edit(Proyecto $proyecto)
     {
-        //
+
+        $categorias = Categoria::all();
+        $usuarios = User::all();
+        return view('proyectos/agregar', compact('proyecto','categorias','usuarios'));
     }
 
     /**
