@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('users/index', compact('users'));
     }
 
     /**
@@ -24,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $proyectos = Proyecto::all();
+        return view('users/agregar', compact('proyectos'));
     }
 
     /**
@@ -35,7 +38,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = User::create($request->all());
+        $user->proyectos()->attach($request->proyecto_id);
+        
+        
+        //redireccionar
+        return redirect('users');
     }
 
     /**
@@ -46,7 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        //Los muestro en index
     }
 
     /**
@@ -57,7 +70,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $proyectos = Proyecto::all();
+
+        return view('users/editar', compact('proyectos', 'user'));
     }
 
     /**
@@ -69,7 +84,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        //validar
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        User::where('id', $user->id)->update($request->except('_method','_token','proyecto_id'));
+
+        $user->proyectos()->sync($request->proyecto_id);
+
+        return redirect('users');
     }
 
     /**
@@ -80,6 +105,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect('users');
     }
 }

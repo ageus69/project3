@@ -62,7 +62,7 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
-        
+        //Muestro en index lol
     }
 
     /**
@@ -88,7 +88,18 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, Proyecto $proyecto)
     {
-        //
+        //validar
+        $request->validate([
+            'name' => 'required',
+            'categoria_id' => 'required',
+            'detalles' => 'required'
+        ]);
+
+        Proyecto::where('id', $proyecto->id)->update($request->except('_method','_token','user_id'));
+
+        $proyecto->users()->sync($request->user_id);
+
+        return redirect('proyectos');
     }
 
     /**
@@ -99,6 +110,7 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        //
+        $proyecto->delete();
+        return redirect('proyectos');
     }
 }

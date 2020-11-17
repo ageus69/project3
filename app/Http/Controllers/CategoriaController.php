@@ -56,7 +56,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        //Muestro en index lol
     }
 
     /**
