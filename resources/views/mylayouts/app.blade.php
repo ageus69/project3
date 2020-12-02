@@ -42,9 +42,13 @@
         <div class="header py-4">
           <div class="container">
             <div class="d-flex">
-              <a class="header-brand" href="http://project3.test/">
+              <a class="header-brand" href="/">
                 AURBANA
               </a>
+              <a class="header-brand" href="{{ route('dashboard') }}">
+                DASHBOARD
+              </a>
+              
             </div>
           </div>
         </div>

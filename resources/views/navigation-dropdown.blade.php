@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                    <a href="/">
+                        {{ __('Initial page') }}
                     </a>
                 </div>
 
@@ -19,9 +19,18 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('proyectos.index'), Auth::user()->userid }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Proyectos') }}
+                        {{ __('Mis Proyectos') }}
                     </x-jet-nav-link>
                 </div>
+
+                @if(Auth::user()->name == "ADMIN")
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('categorias.index'), Auth::user()->userid }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Categorías') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endif
+
             </div>
 
             <!-- Settings Dropdown -->

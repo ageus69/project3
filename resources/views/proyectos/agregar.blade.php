@@ -11,6 +11,16 @@
                   <img src="./assets/brand/tabler.svg" class="h-6" alt="">
                 </div>
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 @if(isset($proyecto))
                   <h1 style="text-align: center">Cambiar proyecto</h1>
                   <form class="card" action="{{route('proyectos.update', [$proyecto])}}" method="post">
@@ -33,14 +43,13 @@
                         </select>
                     </div>
                     <div class="form-group">
-                      <label class="form-label">Usuarios</label>
+                      <label class="form-label">Usuarios colaboradores</label>
                       <select name="user_id[]" class="form-control" multiple>
                           @foreach ($usuarios as $u)
                               <option value="{{$u->id}}" {{in_array($u->id,$proyecto->users->pluck('id')->toArray()) ? 'selected' : ''}} >{{$u->name}}</option>
                           @endforeach
                       </select>
                     </div>   
-
                 @else
                   <h1 style="text-align: center">Agregar proyecto</h1>
                   <form class="card" action="{{route('proyectos.store')}}" method="post">
@@ -62,13 +71,14 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Usuarios</label>
-                    <select name="user_id[]" class="form-control" multiple>
+                    <label class="form-label">Usuarios colaboradores</label>
+                    <select name="user_ids[]" class="form-control" multiple>
                       @foreach ($usuarios as $u)
                         <option value="{{$u->id}}">{{$u->name}}</option>
                       @endforeach
                     </select>
                   </div>
+
                 @endif
                 @csrf
                     <div class="form-footer">

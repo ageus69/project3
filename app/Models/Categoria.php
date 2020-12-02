@@ -11,6 +11,16 @@ class Categoria extends Model
     protected $table = "categorias";
     protected $fillable = ['name'];
     
+    //accessor
+    public function getNameAttribute($value){
+        return ucfirst(strtoupper($value));
+    }
+
+    //mutator
+    public function setNameAttribute($value){
+        $this->attributes['name'] = mb_strtoupper($value, 'UTF-8');
+    }
+
     public function proyectos(){
         return $this->hasMany(Proyecto::class);
     }

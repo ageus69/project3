@@ -18,6 +18,20 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    //accessor
+    public function getNameAttribute($value){
+        return ucfirst(strtoupper($value));
+    }
+
+    //mutator
+    public function setNameAttribute($value){
+        $this->attributes['name'] = mb_strtoupper($value, 'UTF-8');
+    }
+
+    public function proyectos_owned(){
+        return $this->belongsToMany(Proyecto::class);
+    }
+
     public function proyectos(){
         return $this->belongsToMany(Proyecto::class);
     }

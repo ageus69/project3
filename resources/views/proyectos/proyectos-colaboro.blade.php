@@ -1,7 +1,7 @@
 @extends('mylayouts/app')
 @section('contenido')
 <div class="container">
-    <h1>Proyectos de {{ Auth::user()->name }}</h1> 
+    <h1>Proyectos donde colabora {{ Auth::user()->name }}</h1> 
     <a href="{{route('proyectos.create')}}"> Agregar proyecto</a>
     <table class="table">
         <tr>
@@ -14,7 +14,7 @@
             <td></td>
         </tr>
         @foreach ($proyectos as $p)
-            @if($p->user_id == Auth::user()->id)
+            @if(in_array(Auth::user()->id,$p->users->pluck('id')->toArray()))
                 <tr>
                     <td>{{$p->id}}</td>
                     <td>{{$p->name}}</td>
@@ -38,34 +38,4 @@
         @endforeach
     </table>
 </div>
-
-<div class="container">
-    <h1>Proyectos donde colaboro</h1> 
-    <table class="table">
-        <tr>
-            <td>ID</td>
-            <td>NOMBRE</td>
-            <td>CATEGORÍA</td>
-            <td>DESCRIPCIÓN</td>
-            <td>USUARIOS</td>
-        </tr>
-        @foreach ($proyectos as $p)
-            @if(in_array(Auth::user()->id,$p->users->pluck('id')->toArray()))
-                <tr>
-                    <td>{{$p->id}}</td>
-                    <td>{{$p->name}}</td>
-                    <td>{{$p->categoria->name}}</td>
-                    <td>{{$p->detalles}}</td>
-                    <td>
-                        @foreach ($p->users as $u)
-                            {{$u->name}}<br>
-                        @endforeach
-                    </td>
-                </tr>
-            @endif
-        @endforeach
-    </table>
-</div>
-
-
 @endsection

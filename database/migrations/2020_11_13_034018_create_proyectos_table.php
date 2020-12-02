@@ -14,11 +14,13 @@ class CreateProyectosTable extends Migration
     public function up()
     {
         Schema::create('proyectos', function (Blueprint $table) {
-            $table->id();
+            $table->id();           
             $table->foreignId('categoria_id')->constrained();
+            $table->foreignId('user_id')->nullable($value = true);
             $table->string('name');
             $table->text('detalles');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

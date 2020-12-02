@@ -20,6 +20,7 @@ class ProyectoController extends Controller
         return view('proyectos/index', compact('proyectos'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,8 +47,11 @@ class ProyectoController extends Controller
             'detalles' => 'required'
         ]);
 
+   
         $proyecto = Proyecto::create($request->all());
-        $proyecto->users()->attach($request->user_id);
+        $proyecto->user_id = \Auth::id();
+        $proyecto->save();
+        $proyecto->users()->attach($request->user_ids);
         
         
         //redireccionar

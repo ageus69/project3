@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('landing-page');
 });
 
+
 Route::resource('proyectos', ProyectoController::class);
 
 Route::resource('categorias', CategoriaController::class);
