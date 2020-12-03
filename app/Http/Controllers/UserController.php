@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -15,6 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        Gate::authorize('admin');
+
         $users = User::all();
         return view('users/index', compact('users'));
     }
@@ -70,8 +73,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $proyectos = Proyecto::all();
+        Gate::authorize('admin');
 
+        $proyectos = Proyecto::all();
         return view('users/editar', compact('proyectos', 'user'));
     }
 
@@ -105,6 +109,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Gate::authorize('admin');
+
         $user->delete();
         return redirect('users');
     }

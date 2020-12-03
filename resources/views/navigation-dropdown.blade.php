@@ -23,7 +23,7 @@
                     </x-jet-nav-link>
                 </div>
 
-                @if(Auth::user()->name == "ADMIN")
+                @if(Auth::user()->id == "1")
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('categorias.index'), Auth::user()->userid }}" :active="request()->routeIs('dashboard')">
                             {{ __('Categorías') }}

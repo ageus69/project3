@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoriaController extends Controller
 {
@@ -67,6 +68,8 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
+        Gate::authorize('admin');
+
         return view('categorias/agregar', compact('categoria'));
     }
 
@@ -96,6 +99,8 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
+        Gate::authorize('admin');
+
         $categoria->delete();
         return redirect()->route('categorias.index');
     }

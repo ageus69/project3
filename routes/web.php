@@ -18,11 +18,11 @@ Route::get('/', function () {
 });
 
 
-Route::resource('proyectos', ProyectoController::class);
+Route::resource('proyectos', ProyectoController::class)->middleware('auth');
 
-Route::resource('categorias', CategoriaController::class);
+Route::resource('categorias', CategoriaController::class)->middleware('auth');
 
-Route::resource('users', UserController::class);
+Route::resource('users', UserController::class)->middleware('auth');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

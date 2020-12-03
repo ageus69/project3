@@ -1,7 +1,7 @@
 @extends('mylayouts/app')
 @section('contenido')
-<div class="container">
-    
+
+<div class="container">   
     <div class="page">
         <div class="page-single">
           <div class="container">
@@ -48,4 +48,5 @@
         </div>
       </div>
 </div>
+
 @endsection
