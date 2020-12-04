@@ -55,7 +55,10 @@ class ProyectoController extends Controller
         
         
         //redireccionar
-        return redirect('proyectos');
+        return redirect('proyectos')->with([
+            'mensaje' => 'Proyecto creado con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 
     /**
@@ -103,7 +106,10 @@ class ProyectoController extends Controller
 
         $proyecto->users()->sync($request->user_id);
 
-        return redirect('proyectos');
+        return redirect('proyectos')->with([
+            'mensaje' => 'proyecto editado con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 
     /**
@@ -115,6 +121,9 @@ class ProyectoController extends Controller
     public function destroy(Proyecto $proyecto)
     {
         $proyecto->delete();
-        return redirect('proyectos');
+        return redirect('proyectos')->with([
+            'mensaje' => 'proyecto destruido con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 }

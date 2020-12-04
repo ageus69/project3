@@ -51,7 +51,10 @@ class UserController extends Controller
         
         
         //redireccionar
-        return redirect('users');
+        return redirect('users')->with([
+            'mensaje' => 'usuario creado con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 
     /**
@@ -98,7 +101,10 @@ class UserController extends Controller
 
         $user->proyectos()->sync($request->proyecto_id);
 
-        return redirect('users');
+        return redirect('users')->with([
+            'mensaje' => 'usuairo editado con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 
     /**
@@ -112,6 +118,9 @@ class UserController extends Controller
         Gate::authorize('admin');
 
         $user->delete();
-        return redirect('users');
+        return redirect('users')->with([
+            'mensaje' => 'usuario eliminado con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 }

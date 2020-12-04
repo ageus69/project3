@@ -27,6 +27,7 @@ class CategoriaController extends Controller
     public function create()
     {
         return view('categorias/agregar');
+            
     }
 
     /**
@@ -46,7 +47,11 @@ class CategoriaController extends Controller
 
         
         //redireccionar
-        return redirect('categorias');
+        return redirect('categorias')
+            ->with([
+                'mensaje' => 'Categoria creada con exito',
+                'alert-type' => 'alert-success'
+            ]);
     }
 
     /**
@@ -88,7 +93,10 @@ class CategoriaController extends Controller
 
         Categoria::where('id', $categoria->id)->update($request->except('_method','_token'));
 
-        return redirect()->route('categorias.index', [$categoria]);
+        return redirect()->route('categorias.index', [$categoria])->with([
+            'mensaje' => 'Categoria actualizada con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 
     /**
@@ -102,6 +110,9 @@ class CategoriaController extends Controller
         Gate::authorize('admin');
 
         $categoria->delete();
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with([
+            'mensaje' => 'Categoria destruida con exito',
+            'alert-type' => 'alert-success'
+        ]);
     }
 }

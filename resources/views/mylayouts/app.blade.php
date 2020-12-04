@@ -48,12 +48,13 @@
               <a class="header-brand" href="{{ route('dashboard') }}">
                 DASHBOARD
               </a>
-              
             </div>
           </div>
         </div>
         <div class="my-3 my-md-5">
+          @include('mylayouts.mensaje') 
             @yield('contenido')
+              
         </div>
       </div>
     </div>
