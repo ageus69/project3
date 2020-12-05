@@ -102,7 +102,7 @@ class UserController extends Controller
         $user->proyectos()->sync($request->proyecto_id);
 
         return redirect('users')->with([
-            'mensaje' => 'usuairo editado con exito',
+            'mensaje' => 'usuario editado con exito',
             'alert-type' => 'alert-success'
         ]);
     }

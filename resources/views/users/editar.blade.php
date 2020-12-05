@@ -11,6 +11,17 @@
                   <img src="./assets/brand/tabler.svg" class="h-6" alt="">
                     </div>
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
                         <h1 style="text-align: center">Cambiar usuario</h1>
 
                         <form class="card" action="{{route('users.update', [$user])}}" method="post">

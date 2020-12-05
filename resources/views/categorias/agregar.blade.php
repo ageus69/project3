@@ -10,6 +10,17 @@
                   <img src="./assets/brand/tabler.svg" class="h-6" alt="">
                 </div>
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+
                 @if(isset($categoria))
                     <h1 style="text-align: center">Cambiar categoría</h1>
                     <form class="card" action="{{route('categorias.update', [$categoria])}}" method="post">

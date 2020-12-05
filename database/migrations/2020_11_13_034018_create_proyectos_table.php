@@ -31,6 +31,10 @@ class CreateProyectosTable extends Migration
      */
     public function down()
     {
+        Schema::table('proyectos', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+        
         Schema::dropIfExists('proyectos');
     }
 }

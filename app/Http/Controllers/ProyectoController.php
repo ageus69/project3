@@ -16,7 +16,7 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        $proyectos = Proyecto::with('categoria')->get();
+        $proyectos = Proyecto::withTrashed('categoria')->get();
         return view('proyectos/index', compact('proyectos'));
     }
 

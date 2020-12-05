@@ -24,7 +24,6 @@ Route::resource('categorias', CategoriaController::class)->middleware('auth');
 
 Route::resource('users', UserController::class)->middleware('auth');
 
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
