@@ -1,6 +1,4 @@
 ***
-Aguilar Eusebio Agustín
-Alvarez Chávez Iván Alejandro  
 08/012/2020  
 Programación para internet - CUCEI de UDG
 ***
