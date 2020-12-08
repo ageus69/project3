@@ -19,7 +19,7 @@ manipulado por medio del administrador - primer usuario **admin@gmail.com** con 
 
 ## Notas:
 
-*El proyecto fue realizado en laravel y para instalarlo, el único detalle que tuvimos que solventar fue
+* El proyecto fue realizado en laravel y para instalarlo, el único detalle que tuvimos que solventar fue
 cambiar la base de datos de por defecto a la del proyecto "project3" en el archivo .env. Después de eso puede ejecutar las migraciones
 y la semilla <php artisan db:seed --class=DatabaseSeeder>
-*Las contraseñas del resto de usuarios es "password".
+* Las contraseñas del resto de usuarios es "password".
